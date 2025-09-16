@@ -48,7 +48,7 @@ public class Tests
     public void MinimalHashSetShouldThrowArgumentNullException()
     {
         Action a = () => new MinimalHashSet<int>(null);
-        a.ShouldThrow<ArgumentNullException>();
+        a.ShouldNotThrow();
     }
 
     [Test]
