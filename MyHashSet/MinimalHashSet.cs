@@ -13,9 +13,22 @@ public ref struct MinimalHashSet<T> : IDisposable
     private int _startingIdx;
     private int _threshold;
     private EqualityComparer<T> _comparer;
-    
-    public MinimalHashSet(int count)
+
+    public MinimalHashSet()
     {
+        _comparer = EqualityComparer<T>.Default;
+        Construct(0);
+    }
+    
+    public MinimalHashSet(EqualityComparer<T>? comparer = null)
+    {
+        _comparer = comparer ?? EqualityComparer<T>.Default;
+        Construct(0);
+    }
+    
+    public MinimalHashSet(int count, EqualityComparer<T>? comparer = null)
+    {
+        _comparer = comparer ?? EqualityComparer<T>.Default;
         Construct(count);
     }
 
