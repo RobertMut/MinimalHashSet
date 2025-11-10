@@ -1,9 +1,11 @@
 using System.Buffers;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace MyHashSet.MinimalHashSet;
 
-public struct MinimalHashSet<T> : IDisposable
+[DebuggerDisplay("{_threshold} / {_capacity} - {_startingIdx}")]
+public ref struct MinimalHashSet<T> : IDisposable
 {
     private const double LoadFactor = 0.75;
     
@@ -186,6 +188,7 @@ public struct MinimalHashSet<T> : IDisposable
         return (uint)(_comparer.GetHashCode(item) & uint.MaxValue);
     }
     
+    [DebuggerDisplay("Hash: {Hash}, Value: {Value}")]
     struct Entry
     {
         public uint Hash;
